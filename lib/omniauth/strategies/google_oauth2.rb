@@ -19,6 +19,7 @@ module OmniAuth
       }
 
       def authorize_params
+        session['omniauth.dashboard.params'] = request.params
         super.tap do |params|
           options[:authorize_options].each do |k|
             params[k] = request.params[k.to_s] unless [nil, ''].include?(request.params[k.to_s])
